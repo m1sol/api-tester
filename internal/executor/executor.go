@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"context"
 	"encoding/json"
-	"fmt"
 	"github.com/m1sol/api-tester/internal/config"
 	"io"
 	"net/http"
@@ -34,7 +33,6 @@ func (e *Executor) Execute(ctx context.Context, req config.RequestConfig) Result
 		e.client = &http.Client{}
 	}
 	bodyBytes, _ := json.Marshal(req.Body)
-	fmt.Println("Request body JSON:", string(bodyBytes))
 	httpReq, err := http.NewRequestWithContext(ctx, req.Method, req.URL, bytes.NewReader(bodyBytes))
 	if err != nil {
 		return Result{Err: err}
