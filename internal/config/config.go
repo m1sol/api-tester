@@ -19,8 +19,12 @@ type RequestConfig struct {
 }
 
 type CheckConfig struct {
-	Type     string `yaml:"type"`
-	Expected int    `yaml:"expected"`
+	Type        string `yaml:"type"`
+	Expected    int    `yaml:"expected,omitempty"`
+	Path        string `yaml:"path,omitempty"`
+	Left        string `yaml:"left,omitempty"`
+	Right       string `yaml:"right,omitempty"`
+	Aggregation string `yaml:"aggregation,omitempty"`
 }
 
 type Headers struct {
