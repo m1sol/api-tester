@@ -34,7 +34,7 @@
 ```yaml
 request:
   method: POST
-  url: ${BASE_URL}/v2/aggregator/get-table
+  url: ${BASE_URL}/v2/analytics/get-data
 
   headers:
     Content-Type: application/json
