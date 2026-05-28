@@ -28,7 +28,21 @@ checks:
   - type: status_code
     expected: 200
 
-  - type: aggregate_equals
-    left: $.data.total.revenue
-    right: $.data.rows[*].revenue
-    aggregation: sum
+  - type: json_path_exists
+    path: $.step[*].year
+
+
+  - type: json_path_count
+    expected: 2
+    path: $.step[*]
+
+  - type: json_path_type
+    path: $.metrics[*].tableField.values[*].fact
+    expected: number
+
+  - type: json_path_not_empty
+    path: $.metrics
+
+  - type: json_path_equals
+    path: $.status
+    expected: ok
