@@ -7,6 +7,7 @@ import (
 	"github.com/m1sol/api-tester/internal/config"
 	"github.com/m1sol/api-tester/internal/executor"
 	"github.com/m1sol/api-tester/internal/jsonutil"
+	"github.com/m1sol/api-tester/internal/report"
 	"os"
 )
 
@@ -53,9 +54,7 @@ func Run() error {
 		results = append(results, result)
 	}
 
-	for _, res := range results {
-		fmt.Printf("%v: %v - %v\n", res.Type, res.Status, res.Message)
-	}
+	report.Print(results)
 
 	return nil
 }

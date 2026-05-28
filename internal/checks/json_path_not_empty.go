@@ -2,8 +2,6 @@ package checks
 
 import (
 	"fmt"
-	"strings"
-
 	"github.com/m1sol/api-tester/internal/executor"
 	"github.com/m1sol/api-tester/internal/jsonutil"
 )
@@ -49,30 +47,4 @@ func (c JsonPathNotEmptyCheck) Run(
 		Actual:   values(nodes),
 		Message:  "json path is not empty",
 	}
-}
-
-func nodeIsEmpty(doc *jsonutil.Document, node *jsonutil.Node) bool {
-	switch node.Type {
-	case jsonutil.TypeNull:
-		return true
-	case jsonutil.TypeString:
-		return node.Value == ""
-	case jsonutil.TypeArray, jsonutil.TypeObject:
-		return !hasChildNode(doc, node.Path)
-	default:
-		return false
-	}
-}
-
-func hasChildNode(doc *jsonutil.Document, path string) bool {
-	for _, node := range doc.Nodes {
-		if node.Path == path {
-			continue
-		}
-		if strings.HasPrefix(node.Path, path+".") || strings.HasPrefix(node.Path, path+"[") {
-			return true
-		}
-	}
-
-	return false
 }
