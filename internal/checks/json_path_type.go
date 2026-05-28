@@ -51,11 +51,3 @@ func (c JsonPathTypeCheck) Run(
 		Message:  "json path type matched",
 	}
 }
-
-func nodeTypes(nodes []*jsonutil.Node) []string {
-	types := make([]string, 0, len(nodes))
-	for _, node := range nodes {
-		types = append(types, string(node.Type))
-	}
-	return types
-}
